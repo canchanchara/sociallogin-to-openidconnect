@@ -47,6 +47,25 @@ services:
     restart: unless-stopped
 ```
 
+# JWT Data
+
+Folgende Daten sind im JWT Token verfügbar
+
+## Scope openid
+
+* sub
+
+## Scope Profile
+* given_name
+* family_name
+* name
+* preferred_username
+* profile
+
+## Scope email
+* email
+
+
 # Build Docker image
 
 ```bash
