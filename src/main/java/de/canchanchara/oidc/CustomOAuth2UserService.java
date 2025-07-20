@@ -13,7 +13,7 @@ import java.util.Map;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 
-    @Value("${DEFAULT_USERNAME:userName}")
+    @Value("${OPENID_SUB:userName}")
     private String defaultUsername;
 
     @Override
@@ -22,12 +22,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         Map<String, Object> attributes = oAuth2User.getAttributes();
 
-        String username = (String) attributes.getOrDefault(defaultUsername, attributes.get("email"));
-
         return new DefaultOAuth2User(
                 oAuth2User.getAuthorities(),
                 attributes,
-                username != null ? defaultUsername : "email"  // Schlüssel für getName()
+                defaultUsername  // Schlüssel für getName()
         );
     }
 }

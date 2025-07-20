@@ -10,19 +10,19 @@ Die Konfiguration wurde für die Anbindung an Church Tools optimiert.
 * In diesem Beispiel ist der Service unter https://openid-customapp.yourchurch.de deployed
 * Die externe Anwendung ist: https://custom-app.yourchurch.de/
 
-| Umgebungsvariable                    | Wert                                                                   | Erklärung                                                                   |
-|--------------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| OAUTH_SOCIAL_LOGIN_CLIENT_ID         | clientId von Church Tools                                              |                                                                             |
-| OAUTH_SOCIAL_LOGIN_SECRET            | zufälliger String                                                      |                                                                             |
-| OAUTH_SOCIAL_LOGIN_REDIRECTURI       | https://openid-customapp.yourchurch.de/login/oauth2/code/custom-client | /login/oauth2/code/custom-client muss so bleiben                            |
-| OAUTH_SOCIAL_LOGIN_AUTHORIZATION_URI | https://yourchurch.church.tools/oauth/authorize                        |                                                                             |
-| OAUTH_SOCIAL_LOGIN_TOKEN_URI         | https://yourchurch.church.tools/oauth/access_token                     |                                                                             |
-| OAUTH_SOCIAL_LOGIN_USER_INFO_URI     | https://yourchurch.church.tools/oauth/userinfo                         |                                                                             |
-| DEFAULT_USERNAME                     | userName                                                               | Der Standard Username, der später in sub landet. Alternativ "email" angeben |
-| OPENID_ISSUER                        | https://openid-customapp.yourchurch.de                                 |                                                                             |
-| OPENID_CLIENT_ID                     | selbst vergebene ClientId                                              |                                                                             |
-| OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               |                                                                             |
-| OPENID_REDIRECT_URI                  | https://custom-app.yourchurch.de/oauth2/callback                       |                                                                             |
+| Umgebungsvariable                    | Wert                                                                   | Erklärung                                        |
+|--------------------------------------|------------------------------------------------------------------------|--------------------------------------------------|
+| OAUTH_SOCIAL_LOGIN_CLIENT_ID         | clientId von Church Tools                                              |                                                  |
+| OAUTH_SOCIAL_LOGIN_SECRET            | zufälliger String                                                      |                                                  |
+| OAUTH_SOCIAL_LOGIN_REDIRECTURI       | https://openid-customapp.yourchurch.de/login/oauth2/code/custom-client | /login/oauth2/code/custom-client muss so bleiben |
+| OAUTH_SOCIAL_LOGIN_AUTHORIZATION_URI | https://yourchurch.church.tools/oauth/authorize                        |                                                  |
+| OAUTH_SOCIAL_LOGIN_TOKEN_URI         | https://yourchurch.church.tools/oauth/access_token                     |                                                  |
+| OAUTH_SOCIAL_LOGIN_USER_INFO_URI     | https://yourchurch.church.tools/oauth/userinfo                         |                                                  |
+| OPENID_SUB                           | userName                                                               | Identifier des Sub: userName, email, id           |
+| OPENID_ISSUER                        | https://openid-customapp.yourchurch.de                                 |                                                  |
+| OPENID_CLIENT_ID                     | selbst vergebene ClientId                                              |                                                  |
+| OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               |                                                  |
+| OPENID_REDIRECT_URI                  | https://custom-app.yourchurch.de/oauth2/callback                       |                                                  |
 
 # Run with docker-compose
 
@@ -37,7 +37,7 @@ services:
       - OAUTH_SOCIAL_LOGIN_AUTHORIZATION_URI=https://yourchurch.church.tools/oauth/authorize
       - OAUTH_SOCIAL_LOGIN_TOKEN_URI=https://yourchurch.church.tools/oauth/access_token
       - OAUTH_SOCIAL_LOGIN_USER_INFO_URI=https:/yourchurch.church.tools/oauth/userinfo
-      - DEFAULT_USERNAME=userName
+      - OPENID_SUB=userName
       - OPENID_ISSUER=https://openid-customapp.yourchurch.de
       - OPENID_CLIENT_ID=custom-app-client
       - OPENID_CLIENT_SECRET=randomTopSecretString
