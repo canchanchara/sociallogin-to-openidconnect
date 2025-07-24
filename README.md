@@ -78,6 +78,6 @@ mvn spring-boot:build-image
 docker tag docker.io/canchanchara/sociallogin-to-openidconnect:latest zendem/sociallogin-to-openidconnect:latest
 docker push zendem/sociallogin-to-openidconnect:latest
 
-docker tag docker.io/canchanchara/sociallogin-to-openidconnect:<CURRENT_VERSION> zendem/sociallogin-to-openidconnect:latest
+docker tag docker.io/canchanchara/sociallogin-to-openidconnect:latest zendem/sociallogin-to-openidconnect:<CURRENT_VERSION>
 docker push zendem/sociallogin-to-openidconnect:<CURRENT_VERSION>
 ```
