@@ -18,7 +18,7 @@ Die Konfiguration wurde für die Anbindung an Church Tools optimiert.
 | OAUTH_SOCIAL_LOGIN_AUTHORIZATION_URI | https://yourchurch.church.tools/oauth/authorize                        |                                                  |
 | OAUTH_SOCIAL_LOGIN_TOKEN_URI         | https://yourchurch.church.tools/oauth/access_token                     |                                                  |
 | OAUTH_SOCIAL_LOGIN_USER_INFO_URI     | https://yourchurch.church.tools/oauth/userinfo                         |                                                  |
-| OPENID_SUB                           | userName                                                               | Identifier des Sub: userName, email, id           |
+| OPENID_SUB                           | userName                                                               | Identifier des Sub: userName, email, id          |
 | OPENID_ISSUER                        | https://openid-customapp.yourchurch.de                                 |                                                  |
 | OPENID_CLIENT_ID                     | selbst vergebene ClientId                                              |                                                  |
 | OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               |                                                  |
@@ -77,4 +77,7 @@ mvn spring-boot:build-image
 ```bash
 docker tag docker.io/canchanchara/sociallogin-to-openidconnect:latest zendem/sociallogin-to-openidconnect:latest
 docker push zendem/sociallogin-to-openidconnect:latest
+
+docker tag docker.io/canchanchara/sociallogin-to-openidconnect:<CURRENT_VERSION> zendem/sociallogin-to-openidconnect:latest
+docker push zendem/sociallogin-to-openidconnect:<CURRENT_VERSION>
 ```
