@@ -1,14 +1,12 @@
 # OAuth Social Login to OpenID Connect
 
-Mit dieser Spring Boot Application kann ein vorhandener OAuth Social Login zu OpenID Connect (OIDC) erweitert werden,
+Mit dieser Spring Boot Application kann ein vorhandener OAuth Social Login von [Church Tools](https://church.tools) zu OpenID Connect (OIDC) erweitert werden,
 sodass sich eine externe App per OIDC verbinden kann.
-
-Die Konfiguration wurde für die Anbindung an Church Tools optimiert.
 
 # Konfiguration
 
 * In diesem Beispiel ist der Service unter https://openid-customapp.yourchurch.de deployed
-* Die externe Anwendung ist: https://custom-app.yourchurch.de/
+* Die externe Anwendung ist: https://custom-app.yourchurch.de
 
 | Umgebungsvariable                    | Wert                                                                   | Erklärung                                        |
 |--------------------------------------|------------------------------------------------------------------------|--------------------------------------------------|

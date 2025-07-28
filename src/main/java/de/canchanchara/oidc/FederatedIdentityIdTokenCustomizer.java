@@ -1,5 +1,6 @@
 package de.canchanchara.oidc;
 
+import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.core.oidc.endpoint.OidcParameterNames;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
@@ -18,20 +19,25 @@ public class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCustomizer
         if (OidcParameterNames.ID_TOKEN.equals(context.getTokenType().getValue()) &&
                 context.getPrincipal().getPrincipal() instanceof OAuth2User oauth2User) {
 
-                if (scopes.contains("profile")) {
-                    var dataMap = (Map) oauth2User.getAttributes().get("data");
-                    context.getClaims().claim("given_name", dataMap.get("firstName"));
-                    context.getClaims().claim("family_name", dataMap.get("lastName"));
-                    context.getClaims().claim("name", dataMap.get("displayName"));
-                    context.getClaims().claim("preferred_username", dataMap.get("userName"));
-                    context.getClaims().claim("profile", dataMap.get("imageUrl"));
-                }
-
-                if (scopes.contains("email")) {
-                    context.getClaims().claim("email", oauth2User.getAttribute("email"));
-                }
+            if (scopes.contains(OidcScopes.PROFILE)) {
+                var dataMap = (Map) oauth2User.getAttributes().get("data");
+                context.getClaims().claim("preferred_username", dataMap.get("userName"));
+                context.getClaims().claim("given_name", getValueAsString(dataMap.get("firstName")));
+                context.getClaims().claim("family_name", getValueAsString(dataMap.get("lastName")));
+                context.getClaims().claim("name", getValueAsString(dataMap.get("displayName")));
+                context.getClaims().claim("profile", getValueAsString(dataMap.get("imageUrl")));
             }
 
+            if (scopes.contains(OidcScopes.EMAIL)) {
+                context.getClaims().claim("email", oauth2User.getAttribute("email"));
+            }
+        }
+
     }
+
+    private static String getValueAsString(Object value) {
+        return value == null ? "" : (String) value;
+    }
+
 
 }
