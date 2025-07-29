@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>de.return0</groupId>
 	<artifactId>sociallogin-to-openidconnect</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>sociallogin-to-openidconnect</name>
 	<description>Create OpenID Connect from OAuth Social Login</description>
 	<url/>
