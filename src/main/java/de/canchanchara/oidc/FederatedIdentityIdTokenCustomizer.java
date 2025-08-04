@@ -21,22 +21,33 @@ public class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCustomizer
 
             if (scopes.contains(OidcScopes.PROFILE)) {
                 var dataMap = (Map) oauth2User.getAttributes().get("data");
-                context.getClaims().claim("preferred_username", dataMap.get("userName"));
-                context.getClaims().claim("given_name", getValueAsString(dataMap.get("firstName")));
-                context.getClaims().claim("family_name", getValueAsString(dataMap.get("lastName")));
-                context.getClaims().claim("name", getValueAsString(dataMap.get("displayName")));
-                context.getClaims().claim("profile", getValueAsString(dataMap.get("imageUrl")));
+                if (dataMap.get("userName") != null) {
+                    context.getClaims().claim("preferred_username", dataMap.get("userName"));
+                }
+                if (dataMap.get("firstName") != null) {
+                    context.getClaims().claim("given_name", dataMap.get("firstName"));
+                }
+
+                if (dataMap.get("lastName") != null) {
+                    context.getClaims().claim("family_name", dataMap.get("lastName"));
+                }
+
+                if (dataMap.get("displayName") != null) {
+                    context.getClaims().claim("name", dataMap.get("displayName"));
+                }
+
+                if (dataMap.get("imageUrl") != null) {
+                    context.getClaims().claim("profile", dataMap.get("imageUrl"));
+                }
             }
 
             if (scopes.contains(OidcScopes.EMAIL)) {
-                context.getClaims().claim("email", oauth2User.getAttribute("email"));
+                if (oauth2User.getAttribute("email") != null) {
+                    context.getClaims().claim("email", oauth2User.getAttribute("email"));
+                }
             }
         }
 
-    }
-
-    private static String getValueAsString(Object value) {
-        return value == null ? "" : (String) value;
     }
 
 
