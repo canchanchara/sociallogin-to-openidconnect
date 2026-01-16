@@ -48,7 +48,10 @@ public class OpenIDConfiguration {
                         .refreshTokenTimeToLive(Duration.ofDays(30))
                         .reuseRefreshTokens(true)
                         .build())
-                .clientSettings(ClientSettings.builder().requireAuthorizationConsent(false).build())
+                .clientSettings(ClientSettings.builder()
+                        .requireAuthorizationConsent(false)
+                        .requireProofKey(true)
+                        .build())
                 .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);

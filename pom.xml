@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.4</version>
+		<version>4.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.return0</groupId>
 	<artifactId>sociallogin-to-openidconnect</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 	<name>sociallogin-to-openidconnect</name>
 	<description>Create OpenID Connect from OAuth Social Login</description>
 	<url/>
@@ -37,7 +37,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<artifactId>spring-boot-starter-security-oauth2-client</artifactId>
 		</dependency>
 
 		<dependency>
