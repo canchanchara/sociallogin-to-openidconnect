@@ -49,7 +49,7 @@ services:
       - OAUTH_SOCIAL_LOGIN_REDIRECTURI=https://openid-customapp.yourchurch.de/login/oauth2/code/custom-client
       - OAUTH_SOCIAL_LOGIN_AUTHORIZATION_URI=https://yourchurch.church.tools/oauth/authorize
       - OAUTH_SOCIAL_LOGIN_TOKEN_URI=https://yourchurch.church.tools/oauth/access_token
-      - OAUTH_SOCIAL_LOGIN_USER_INFO_URI=https:/yourchurch.church.tools/oauth/userinfo
+      - OAUTH_SOCIAL_LOGIN_USER_INFO_URI=https://yourchurch.church.tools/oauth/userinfo
       - OPENID_SUB=userName
       - OPENID_ISSUER=https://openid-customapp.yourchurch.de
       - OPENID_CLIENT_ID=custom-app-client
