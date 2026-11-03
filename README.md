@@ -16,10 +16,10 @@ sodass sich eine externe App per OIDC verbinden kann.
 | OAUTH_SOCIAL_LOGIN_AUTHORIZATION_URI | https://yourchurch.church.tools/oauth/authorize                        |                                                  |
 | OAUTH_SOCIAL_LOGIN_TOKEN_URI         | https://yourchurch.church.tools/oauth/access_token                     |                                                  |
 | OAUTH_SOCIAL_LOGIN_USER_INFO_URI     | https://yourchurch.church.tools/oauth/userinfo                         |                                                  |
-| OPENID_SUB                           | userName                                                               | Identifier des Sub: userName, email, id          |
+| OPENID_SUB                           | userName                                                               | Identifier des Sub: userName, email, id (Standard: userName).
 | OPENID_ISSUER                        | https://openid-customapp.yourchurch.de                                 |                                                  |
 | OPENID_CLIENT_ID                     | selbst vergebene ClientId                                              |                                                  |
-| OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               |                                                  |
+| OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               | Klartext wird beim Start mit bcrypt gehasht; alternativ bereits gehasht mit Präfix angeben, z. B. `{bcrypt}$2a$10$...` |
 | OPENID_REDIRECT_URI                  | https://custom-app.yourchurch.de/oauth2/callback                       |                                                  |
 
 # Run with docker-compose
@@ -58,10 +58,11 @@ Folgende Daten sind im JWT Token verfügbar
 * family_name
 * name
 * preferred_username
-* profile
+* picture
 
 ## Scope email
 * email
+* email_verified (immer `true`, da die E-Mail-Adresse von Church Tools verwaltet wird)
 
 
 # Build Docker image
