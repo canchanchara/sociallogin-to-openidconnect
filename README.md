@@ -21,6 +21,21 @@ sodass sich eine externe App per OIDC verbinden kann.
 | OPENID_CLIENT_ID                     | selbst vergebene ClientId                                              |                                                  |
 | OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               | Klartext wird beim Start gehasht (bcrypt, ab 73 Bytes PBKDF2); alternativ bereits gehasht mit Präfix angeben, z. B. `{bcrypt}$2a$10$...`. Ein Klartext-Secret darf daher nicht mit `{...}` beginnen. |
 | OPENID_REDIRECT_URI                  | https://custom-app.yourchurch.de/oauth2/callback                       |                                                  |
+| OPENID_SIGNING_KEY                   | RSA-Schlüssel (PKCS#8) als einzeiliges Base64 oder PEM                 | Empfohlen. Ohne diese Variable wird bei jedem Start ein neuer Schlüssel erzeugt und alle ausgestellten Tokens werden ungültig. Erzeugen siehe unten. |
+
+## Signaturschlüssel erzeugen
+
+Einmalig erzeugen und den Wert als Umgebungsvariable `OPENID_SIGNING_KEY` hinterlegen, z. B. in den
+Stack-Umgebungsvariablen von Portainer oder in einer `.env`-Datei neben der `docker-compose.yml`.
+Ein Volume ist dafür nicht nötig.
+
+```bash
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -outform DER | base64 -w0
+```
+
+Der Schlüssel ist geheim und gehört nicht ins Repository. Autorisierungen und Refresh-Tokens liegen weiterhin im Speicher.
+Nach einem Neustart meldet der Client den Benutzer daher neu an. Solange die Church-Tools-Sitzung noch aktiv ist,
+läuft das ohne Eingabe über Redirects.
 
 # Run with docker-compose
 
@@ -40,6 +55,7 @@ services:
       - OPENID_CLIENT_ID=custom-app-client
       - OPENID_CLIENT_SECRET=randomTopSecretString
       - OPENID_REDIRECT_URI=https://custom-app.yourchurch.de/oauth2/callback
+      - OPENID_SIGNING_KEY=${OPENID_SIGNING_KEY}
     ports:
       - "8080:8080"
     restart: unless-stopped

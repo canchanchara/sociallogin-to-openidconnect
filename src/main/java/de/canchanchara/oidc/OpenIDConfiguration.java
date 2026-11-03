@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Component
@@ -34,7 +33,7 @@ public class OpenIDConfiguration {
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
 
-        RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient registeredClient = RegisteredClient.withId(clientId)
                 .clientId(clientId)
                 .clientSecret(encodeClientSecret(clientSecret))
                 .clientAuthenticationMethods(authMethods -> {
