@@ -19,7 +19,7 @@ sodass sich eine externe App per OIDC verbinden kann.
 | OPENID_SUB                           | userName                                                               | Identifier des Sub: userName, email, id (Standard: userName).
 | OPENID_ISSUER                        | https://openid-customapp.yourchurch.de                                 |                                                  |
 | OPENID_CLIENT_ID                     | selbst vergebene ClientId                                              |                                                  |
-| OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               | Klartext wird beim Start mit bcrypt gehasht; alternativ bereits gehasht mit Präfix angeben, z. B. `{bcrypt}$2a$10$...` |
+| OPENID_CLIENT_SECRET                 | selbst vergebenes Secret                                               | Klartext wird beim Start gehasht (bcrypt, ab 73 Bytes PBKDF2); alternativ bereits gehasht mit Präfix angeben, z. B. `{bcrypt}$2a$10$...`. Ein Klartext-Secret darf daher nicht mit `{...}` beginnen. |
 | OPENID_REDIRECT_URI                  | https://custom-app.yourchurch.de/oauth2/callback                       |                                                  |
 
 # Run with docker-compose
