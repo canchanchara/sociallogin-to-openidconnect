@@ -30,12 +30,10 @@ Stack-Umgebungsvariablen von Portainer oder in einer `.env`-Datei neben der `doc
 Ein Volume ist dafür nicht nötig.
 
 ```bash
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -outform DER | base64 -w0
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 \
+  | openssl pkcs8 -topk8 -nocrypt -outform DER \
+  | base64 -w0
 ```
-
-Der Schlüssel ist geheim und gehört nicht ins Repository. Autorisierungen und Refresh-Tokens liegen weiterhin im Speicher.
-Nach einem Neustart meldet der Client den Benutzer daher neu an. Solange die Church-Tools-Sitzung noch aktiv ist,
-läuft das ohne Eingabe über Redirects.
 
 # Run with docker-compose
 

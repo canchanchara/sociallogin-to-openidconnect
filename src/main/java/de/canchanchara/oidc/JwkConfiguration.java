@@ -28,7 +28,7 @@ import java.util.Base64;
  * oder Redeploy ohne Volume übersteht. Erwartet wird ein RSA-Schlüssel im PKCS#8-Format, entweder als
  * PEM-Text ({@code -----BEGIN PRIVATE KEY-----}) oder als einzeiliges Base64 (DER):
  * <pre>
- * openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -outform DER | base64 -w0
+ * openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 | openssl pkcs8 -topk8 -nocrypt -outform DER | base64 -w0
  * </pre>
  * Ist die Variable nicht gesetzt, wird ein temporärer Schlüssel erzeugt.
  */
